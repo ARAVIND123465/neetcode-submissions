@@ -1,0 +1,28 @@
+class Solution {
+    public int evalRPN(String[] tokens) {
+      Deque<Integer> stack = new ArrayDeque<>();
+        for(int i=0;i<tokens.length;i++){
+               String token = tokens[i];
+
+               if(token.equals("+")||
+                  token.equals("-")||
+                  token.equals("*")||
+                  token.equals("/")){
+                  int second = stack.pop();
+                int first = stack.pop();
+                if(token.equals("+")){
+                    stack.push(first +second);
+                }else if(token.equals("-")){
+                  stack.push(first - second);
+                }else if(token.equals("*")){
+                    stack.push(first * second);
+                }else{
+                  stack.push(first / second);
+                }
+                }  else{
+                 stack.push(Integer.parseInt(token));
+               }
+        }
+        return stack.pop();
+    }
+}
